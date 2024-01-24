@@ -18,6 +18,10 @@ struct ContentView: View {
             
             Form {
                 Section("Enter the details") {
+                    HStack{
+                        Text("Your desired wake up time   ")
+                        DatePicker("", selection: $wakeUp, displayedComponents: .hourAndMinute).labelsHidden()
+                    }
                     VStack {
                         Stepper("Desired Amount of Sleep", value: $sleepAmount, in: 1...14, step: 0.25)
                         Spacer(minLength: 10)
@@ -30,7 +34,7 @@ struct ContentView: View {
                     }
                 }
                 Button("My rest time") {
-                    sleepAmount = 234
+                    //
                 }
                 .padding(10)
                 .background(Color.cyan)
