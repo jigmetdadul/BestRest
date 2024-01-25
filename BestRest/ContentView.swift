@@ -29,12 +29,12 @@ struct ContentView: View {
                     VStack {
                         Stepper("Desired Amount of Sleep", value: $sleepAmount, in: 1...14, step: 0.25)
                         Spacer(minLength: 10)
-                        Text("\(sleepAmount)").bold()
+                        Text("\(sleepAmount) hrs").bold()
                     }
                     VStack {
                         Stepper("Coffee Intake", value: $coffeeAmount, in: 1...8)
                         Spacer(minLength: 10)
-                        Text("\(coffeeAmount)").bold()
+                        Text("\(coffeeAmount)  CUPS").bold()
                     }
                 }
                 Button("Get bed Time"){
@@ -48,7 +48,7 @@ struct ContentView: View {
             .navigationTitle("Better Rest")
             .toolbar {
             
-                Button("Reset", action: calculateRestTime)
+                Button("Reset", action: resetData)
                     .buttonStyle(.bordered)
                     .tint(.orange)
             }
@@ -64,7 +64,7 @@ struct ContentView: View {
     }
     
     
-    func calculateRestTime()->Void{
+    func calculateRestTime(){
         do{
             let config = MLModelConfiguration()
             let SleepModel = try SleepCalculator(configuration: config)
@@ -80,6 +80,11 @@ struct ContentView: View {
             alertMessage = "Sorry, request failed"
         }
         showingAlert = true
+    }
+    func resetData(){
+        sleepAmount = 7
+        coffeeAmount = 1
+        wakeUpTime = Date.now
     }
 }
 
