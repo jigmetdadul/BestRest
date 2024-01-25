@@ -29,12 +29,12 @@ struct ContentView: View {
                     VStack {
                         Stepper("Desired Amount of Sleep", value: $sleepAmount, in: 1...14, step: 0.25)
                         Spacer(minLength: 10)
-                        Text("\(sleepAmount) hrs").bold()
+                        Text("\(sleepAmount.formatted()) hrs").bold()
                     }
                     VStack {
                         Stepper("Coffee Intake", value: $coffeeAmount, in: 1...8)
                         Spacer(minLength: 10)
-                        Text("\(coffeeAmount)  CUPS").bold()
+                        Text("^[\(coffeeAmount) cup](inflect: true)").bold()
                     }
                 }
                 Button("Get bed Time"){
